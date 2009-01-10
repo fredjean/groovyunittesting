@@ -1,0 +1,24 @@
+h1. Testing Is Hard
+
+h1. Testing Is Hard
+
+Testing forces you to think about many things
+
+* Architecture
+* Application Design
+* Expected Behavior
+* Dependencies
+* Error Handling
+* Corner Cases
+
+h1. Java Adds to the Complexity
+
+* Keeping the compiler happy
+* Static typing makes it difficult to mock dependencies
+* Static and final methods further complicates mocking
+
+h1. Making it Easier
+
+* Author the tests in Groovy
+* Use Groovy's dynamic feature to mock dependencies
+* Use JMockit to mock static and final methods

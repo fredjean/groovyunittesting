@@ -1,0 +1,12 @@
+h1. JUnit 4
+
+* Declative through annotations
+* Assertations provided through static methods
+
+h1. JUnit 3 Test Case
+
+:code code/test/HelloWorldTest.java
+
+h1. JUnit 4 Test Case
+
+:code code/test/BasicTest.java

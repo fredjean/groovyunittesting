@@ -1,14 +1,7 @@
-h1. The Codex System
+h1. Groovy Unit Testing
 
-h1. Creating Content
+h1. Introduction
 
-* "The Basics":basics.html
-* "Including Code":including_code.html
+* "Testing is Hard":intro.html
+* "JUnit 4":junit.html
 
-h1. Creating Slideshows
-
-* "Building and Displaying HTML":building.html
-
-h1. An Example     
-
-* "Some Sample Slides":example.html
