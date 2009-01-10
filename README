@@ -1,0 +1,12 @@
+Source for the Groovy Unit Testing presentation.
+
+== Generating the presentation
+
+Install the codex, RedCloth and rubigen gems.
+
+Go to the root of the git repository and run "rake all"
+
+== Viewing the presentation
+
+Open html/all.html into a browser.
+
