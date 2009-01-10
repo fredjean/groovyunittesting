@@ -26,3 +26,19 @@
     </junit>
 </target>
 <!-- END:junit -->
+<!-- START:batchtest -->
+<target name="test" depends="compile-test">
+    <junit showoutput="true" fork="true" dir="${basedir}"  forkmode="once"
+    	   failureproperty="tests.failed" errorproperty="tests.failed">
+		<batchtest todir="${build.test.results.dir}">
+			<fileset dir="@{test-classes-dir}" includes="@{includes}"/>
+		</batchtest>
+    	<classpath>
+    	    <path path="${build.test.classes.dir}"/>
+    		<path path="${run.test.classpath}"/>
+    		<path path="${groovy.classpath}"/>
+    	</classpath>
+    	<formatter type="xml"/>
+    </junit>
+</target>
+<!-- END:batchtest -->
