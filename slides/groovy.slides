@@ -67,10 +67,18 @@ h1. Compile the Groovy Tests
 
 :code code/test/compile.xml[compile class=code-medium]
 
-h1. Run the Test Suite
+h1. Running the Test Suite
 
 :code code/test/compile.xml[junit class=code-medium]
 
-h1. Run Tests By Name
+h1. Running Tests By Name
 
 :code code/test/compile.xml[batchtest class=code-medium]
+
+h1. So Far, So Good
+
+* Learned the basics of JUnit
+* Learned how to author test in Groovy
+* Learned how to run the tests
+
+This is where the fun really begins...
