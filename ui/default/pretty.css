@@ -79,6 +79,12 @@ html>body .external {border-bottom: none;}
 img.incremental {visibility: hidden;}
 .slide .current {color: #B02;}
 
+.code-medium span { font-size: 18px; }
+.code-medium .dp-highlighter ol li { line-height: 22px; }
+.code-large span {font-size: 24px; }
+
+.codeurl { display: none; }
+.codeurl a {font-size: 12px; }
 
 /* diagnostics
 

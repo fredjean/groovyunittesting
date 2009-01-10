@@ -2,6 +2,12 @@ h1. Groovy Unit Testing
 
 h1. Introduction
 
-* "Testing is Hard":intro.html
-* "JUnit 4":junit.html
+* "Introduction":intro.html
 
+h1. JUnit
+
+* "JUnit Basics":junit.html
+
+h1. Groovy
+
+* "JUnit With Groovy":groovy.html

@@ -1,0 +1,72 @@
+h1. JUnit With Groovy
+
+h2. Why use Groovy?
+
+* Dynamic language
+* Supports annotations
+* Support static imports
+* Compiles to Java bytecode
+
+h1. Groovy and Java Test Cases
+
+<div style='width: 50%; float: left'>
+h2. Java
+
+:code code/test/BasicTest.java
+
+</div>
+<div style='width:50%; float:right'> 
+h2. Groovy
+
+:code code/test/BasicTest.groovy
+
+</div>
+
+h1. Groovy Script Test
+
+:code code/test/BasicScriptTest.groovy[class=code-medium]
+
+Groovy scripts are compiled to classes named after the file where they are defined.
+
+h1. Test For Exceptions
+
+:code code/test/ExceptionTest.groovy[class=code-medium]
+
+The test will pass only if the expected exception is thrown.
+
+h1. Test Timeouts
+
+:code code/test/TimeoutTest.groovy[class=code-medium]
+
+The test will fail and stop after waiting for 10 seconds.
+
+h1. Defining a Test Suite[1]
+
+<div style="width: 50%; float: left">
+:code code/test/TestSuite.groovy[class=code-medium]
+</div>
+
+<div style="width: 50%; float:right">
+* Uses the Suite runner
+* Points to the compiled classes
+* Allows us to mix both Java and Groovy test cases
+</div>
+
+<div style="clear: both; font-size: 12px;">
+fn1. Adapted from  http://radio.javaranch.com/lasse/2006/07/27/1154024535662.html
+</div>
+
+h1. Compile the Groovy Tests
+
+* Tell @ant@ where to find the @groovyc@ task
+* Define the @groovyc@ task
+
+:code code/test/compile.xml[init class=code-medium]
+
+* Use @groovyc@ to compile the Groovy tests
+
+:code code/test/compile.xml[compile class=code-medium]
+
+h1. Run the test suite
+
+:code code/test/compile.xml[junit class=code-medium]

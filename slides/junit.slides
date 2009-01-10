@@ -1,12 +1,24 @@
-h1. JUnit 4
-
-* Declative through annotations
-* Assertations provided through static methods
+h1. JUnit Basics
 
 h1. JUnit 3 Test Case
 
-:code code/test/HelloWorldTest.java
+:code code/test/HelloWorldTest.java[class=code-medium]
 
 h1. JUnit 4 Test Case
 
-:code code/test/BasicTest.java
+:code code/test/BasicTest.java[class=code-medium]
+
+* No need to extend TestCase
+* Test methods are annotated
+* Assertions are statically imported
+
+h1. Test Annotations
+
+|_. Annotation |_. Description |
+| @BeforeClass | Marks a per-class setup method. |
+| @Before | Marks a per-test setup method. |
+| @Test | Marks a method as a test method. |
+| @After | Marks a per-test teardown method. |
+| @AfterClass | Marks a per-class teardown method. |
+| @Ignore | Tells JUnit to ignore a method. |
+

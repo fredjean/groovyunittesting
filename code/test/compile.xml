@@ -1,0 +1,28 @@
+<!-- START:init -->
+<target name="init">
+    <property name="groovy.classpath" value="../tools/groovy-all-1.5.6.jar"/>
+    <taskdef name="groovyc" classname="org.codehaus.groovy.ant.Groovyc"
+    	classpath="${groovy.classpath}"/>
+</target>
+<!-- END:init -->
+
+<!-- START:compile -->
+<target name="compile-test" depends="init, compile">
+    <groovyc srcdir="${test.src.dir}" destdir="${build.test.classes.dir}"
+    		 classpath="${run.test.classpath}"/>
+</target>
+<!-- END:compile -->
+<!-- START:junit -->
+<target name="test" depends="compile-test">
+    <junit showoutput="true" fork="true" dir="${basedir}"  forkmode="once"
+    	   failureproperty="tests.failed" errorproperty="tests.failed">
+    	<test name="TestSuite.class"/>
+    	<classpath>
+    	    <path path="${build.test.classes.dir}"/>
+    		<path path="${run.test.classpath}"/>
+    		<path path="${groovy.classpath}"/>
+    	</classpath>
+    	<formatter type="xml"/>
+    </junit>
+</target>
+<!-- END:junit -->
