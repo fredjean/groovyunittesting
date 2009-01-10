@@ -28,6 +28,51 @@ h1. Groovy Script Test
 
 Groovy scripts are compiled to classes named after the file where they are defined.
 
+h1. Setup and Teardown
+
+<div style="float: left; width:50%">
+:code code/test/before.groovy[before class=code-medium]
+</div>
+
+<div style="float: right; width: 50%;">
+* @@Before@ is run before each test method
+* Replaces the @setUp()@ method from JUnit 3
+</div>
+
+<div style="clear: both; width:100%"><hr/></div>
+
+<div style="float:left; width:50%">
+:code code/test/before.groovy[after class=code-medium]
+</div>
+
+<div style="float:right; width: 50%">
+* @@After@ is run after each test method
+* Used to perform clean up tasks
+* Seldom used
+</div>
+
+h1. Class Setup and Teardown
+
+<div style="float: left; width:50%">
+:code code/test/before.groovy[beforeclass class=code-medium]
+</div>
+
+<div style="float: right; width: 50%;">
+* @@BeforeClass@ is run before each test method
+* Used to perform expensive setup operations.
+</div>
+
+<div style="clear: both; width:100%"><hr/></div>
+
+<div style="float:left; width:50%">
+:code code/test/before.groovy[afterclass class=code-medium]
+</div>
+
+<div style="float:right; width: 50%">
+* @@AfterClass@ is run after all test methods have run
+* Used to perform clean up tasks
+</div>
+
 h1. Test For Exceptions
 
 :code code/test/ExceptionTest.groovy[class=code-medium]
