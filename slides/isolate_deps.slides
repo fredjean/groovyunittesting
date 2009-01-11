@@ -2,9 +2,35 @@ h1. Isolating Dependencies
 
 Unit test is concerned with testing classes and methods in isolation from their surrounding system.
 
-Groovy provides many features that makes it easier to isolate a class out of the box.
+Groovy's dynamic nature provides many approaches to isolate the code under test from it's dependencies.
 
-h1. Extending Dependency
+h1. The as Operator
 
+Groovy's as operator allows you to use an Expendo, a Closure or a Map to implement an interface.
 
+|{width:25%}. Closure | Used to implement a single method interface |
+|{width:25%}. Map | Used to implement multiple method interfaces |
 
+The resulting proxy can then be passed to a Java class.
+
+h1. Closure Coercion Example
+
+:code code/test/ClosureTest.groovy[class=code-medium]
+
+Implements the @EventListener@ interface using the @listener@ closure.
+
+h1. Map Coercion Example
+
+First we build and coerce the map into an Execution interface:
+
+:code code/test/MapCoercionTest.groovy[map class=code-medium]
+
+bq. @Execution@ is a ZK interface that encapsulate the HTTP servlet request.
+
+h1. Map Coercion Example (part 2)
+
+Then we use the map in the code under test:
+
+:code code/test/MapCoercionTest.groovy[test class=code-medium]
+
+bq. Map coercion allows you to provide partial interface implementation.
