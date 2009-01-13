@@ -1,0 +1,16 @@
+h1. Conclusion
+
+* Unit Testing
+* Using JUnit
+* Using Groovy to write tests
+* Isolating code under test
+
+h1. Links and References
+
+"JUnit 4":http://junit.org/
+"Groovy":http://groovy.codehaus.org
+"Groovy Testing Guide":http://groovy.codehaus.org/Testing+Guide
+"JMockit":https://jmockit.dev.java.net/
+
+"Programming Groovy":http://pragprog.com/titles/vslg/programming-groovy
+"Groovy Recipes":http://pragprog.com/titles/sdgrvr/groovy-recipes

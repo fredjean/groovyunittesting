@@ -12,3 +12,7 @@ h1. JUnit
 h1. Isolating Dependencies
 
 * "Isolating Dependencies with Groovy":isolate_deps.html
+
+h1. Conclusion
+
+* "Conclusion":conclusion.html
