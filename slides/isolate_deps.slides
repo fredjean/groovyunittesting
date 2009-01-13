@@ -51,6 +51,7 @@ h1. JMockit
 * Runs as a JVM agent
 * Replaces any method or constructor at run time.
 * Redefines classes as they are loaded
+* Can Redefine final classes
 * Requires Java 5
 
 h1. Getting JMockit to Work
