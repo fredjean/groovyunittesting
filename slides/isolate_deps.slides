@@ -42,6 +42,7 @@ These cases are hard to test:
 * Dependency created as part of the code under test
 * Making calls to static methods
 * Making calls to final methods
+* Using final classes
 
 None of these are easy to address in normal unit testing scenarios
 
@@ -67,7 +68,11 @@ Pass @-javaagent:/path/to/jmockit.jar@ as an argument to the JVM.
 
 You may also need to add @jmockit-asm2.jar@ to the classpath.
 
-h1. Write Mock Method
+h1. Write Instance Mock Method
+
+:code code/test/MockDesktopUtil.java[class=code-medium]
+
+h1. Write Static Mock Method
 
 :code code/test/MockPath.java[class=code-medium]
 

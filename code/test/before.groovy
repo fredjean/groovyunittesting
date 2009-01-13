@@ -1,14 +1,14 @@
 // START:before
 import org.junit.Before
 
-@Before void setup() {
+@Before void setupTest() {
     label = new TestMastheadLabel()
 }
 // END:before
 // START:after
 import org.junit.After
 
-@After void setup() {
+@After void afterTest() {
   label = null
 }
 // END:after

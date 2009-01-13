@@ -10,7 +10,7 @@ def exec = [
 def dummy = [:] as Execution
 // END:map
 // START:test
-def Detector = new BrowserDetector()
+def detector = new BrowserDetector()
 
 //...
 

@@ -31,7 +31,7 @@
     <junit showoutput="true" fork="true" dir="${basedir}"  forkmode="once"
     	   failureproperty="tests.failed" errorproperty="tests.failed">
 		<batchtest todir="${build.test.results.dir}">
-			<fileset dir="@{test-classes-dir}" includes="test/**/*Test.class"/>
+			<fileset dir="${build.test.classes.dir}" includes="**/*Test.class"/>
 		</batchtest>
     	<classpath>
     	    <path path="${build.test.classes.dir}"/>
@@ -45,7 +45,7 @@
 <!-- START:jmockit -->
 <junit showoutput="true" fork="true" dir="${basedir}"  forkmode="once"
 	   failureproperty="tests.failed" errorproperty="tests.failed">
-	<jvmarg value="-javaagent:../lib/jmockit.jar"/>
+	<jvmarg value="-javaagent:../tools/jmockit.jar"/>
 	<!-- ... -->
 </junit>
 <!-- END:jmockit -->

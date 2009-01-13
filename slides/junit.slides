@@ -12,13 +12,4 @@ h1. JUnit 4 Test Case
 * Test methods are annotated
 * Assertions are statically imported
 
-h1. Test Annotations
-
-|_{width:25%}. Annotation |_. Description |
-|{width:25%}. @@BeforeClass@ | Marks a per-class setup method. |
-|{width:25%}. @@Before@ | Marks a per-test setup method. |
-|{width:25%}. @@Test@ | Marks a method as a test method. |
-|{width:25%}. @@After@ | Marks a per-test teardown method. |
-|{width:25%}. @@AfterClass@ | Marks a per-class teardown method. |
-|{width:25%}. @@Ignore@ | Tells JUnit to ignore a method. |
-
+bq{margin-top: 24px}. JUnit 4 test cases are just annotated POJOs.

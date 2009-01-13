@@ -7,6 +7,8 @@ h2. Why use Groovy?
 * Support static imports
 * Compiles to Java bytecode
 
+bq{margin-top: 48px;}. Groovy is a great language to write JUnit 4 test cases.
+
 h1. Groovy and Java Test Cases
 
 <div style='width: 50%; float: left'>
@@ -18,7 +20,76 @@ h2. Java
 <div style='width:50%; float:right'> 
 h2. Groovy
 
-:code code/test/BasicTest.groovy
+:code code/test/BasicTest.groovy[p1]
+
+</div>
+
+<div style="width:100%; clear:both">
+    
+bq. Groovy allows you to gradually adopt it's idioms.
+
+</div>
+
+h1. Groovy and Java Test Cases
+
+<div style='width: 50%; float: left'>
+h2. Java
+
+:code code/test/BasicTest.java
+
+</div>
+<div style='width:50%; float:right'> 
+h2. Groovy
+
+:code code/test/BasicTest.groovy[p2]
+
+</div>
+
+<div style="width:100%; clear:both">
+    
+bq. Groovy allows you to gradually adopt it's idioms.
+
+</div>
+
+h1. Groovy and Java Test Cases
+
+<div style='width: 50%; float: left'>
+h2. Java
+
+:code code/test/BasicTest.java
+
+</div>
+<div style='width:50%; float:right'> 
+h2. Groovy
+
+:code code/test/BasicTest.groovy[p3]
+
+</div>
+
+<div style="width:100%; clear:both">
+    
+bq. Groovy allows you to gradually adopt it's idioms.
+
+</div>
+
+h1. Groovy and Java Test Cases
+
+<div style='width: 50%; float: left'>
+h2. Java
+
+:code code/test/BasicTest.java
+
+</div>
+<div style='width:50%; float:right'> 
+h2. Groovy
+
+:code code/test/BasicTest.groovy[p4]
+
+</div>
+
+<div style="width:100%; clear:both">
+    
+bq. Groovy allows you to gradually adopt it's idioms.
 
 </div>
 
@@ -26,7 +97,18 @@ h1. Groovy Script Test
 
 :code code/test/BasicScriptTest.groovy[class=code-medium]
 
-Groovy scripts are compiled to classes named after the file where they are defined.
+bq. Groovy scripts are compiled to classes named after the file where they are defined.
+
+h1. Test Annotations
+
+|_{width:25%}. Annotation |_. Description |
+|{width:25%}. @@BeforeClass@ | Marks a per-class setup method. |
+|{width:25%}. @@Before@ | Marks a per-test setup method. |
+|{width:25%}. @@Test@ | Marks a method as a test method. |
+|{width:25%}. @@After@ | Marks a per-test teardown method. |
+|{width:25%}. @@AfterClass@ | Marks a per-class teardown method. |
+|{width:25%}. @@Ignore@ | Tells JUnit to ignore a method. |
+
 
 h1. Setup and Teardown
 
@@ -37,18 +119,17 @@ h1. Setup and Teardown
 <div style="float: right; width: 50%;">
 * @@Before@ is run before each test method
 * Replaces the @setUp()@ method from JUnit 3
+* Must be public
 </div>
 
-<div style="clear: both; width:100%"><hr/></div>
-
-<div style="float:left; width:50%">
+<div style="clear: both; float:left; width:50%">
 :code code/test/before.groovy[after class=code-medium]
 </div>
 
 <div style="float:right; width: 50%">
 * @@After@ is run after each test method
 * Used to perform clean up tasks
-* Seldom used
+* Must be public
 </div>
 
 h1. Class Setup and Teardown
@@ -60,30 +141,41 @@ h1. Class Setup and Teardown
 <div style="float: right; width: 50%;">
 * @@BeforeClass@ is run before each test method
 * Used to perform expensive setup operations.
+* Must be static and public
 </div>
 
-<div style="clear: both; width:100%"><hr/></div>
-
-<div style="float:left; width:50%">
+<div style="clear: both; float:left; width:50%">
 :code code/test/before.groovy[afterclass class=code-medium]
 </div>
 
 <div style="float:right; width: 50%">
 * @@AfterClass@ is run after all test methods have run
 * Used to perform clean up tasks
+* Must be static and public
 </div>
 
 h1. Test For Exceptions
 
-:code code/test/ExceptionTest.groovy[class=code-medium]
+:code code/test/ExceptionTest.groovy[fail class=code-medium]
 
-The test will pass only if the expected exception is thrown.
+h1. Test For Exceptions
+
+:code code/test/ExceptionTest.groovy[expected class=code-medium]
+
+bq. The test will pass only if the expected exception is thrown.
 
 h1. Test Timeouts
 
 :code code/test/TimeoutTest.groovy[class=code-medium]
 
-The test will fail and stop after waiting for 10 seconds.
+bq. The test will fail and stop after waiting for 10 seconds.
+
+h1. Ignoring a Test
+
+:code code/test/FailTest.groovy[class=code-medium]
+
+* No need to comment out failing tests
+* Ignored tests are included in the report
 
 h1. Defining a Test Suite[1]
 
@@ -126,4 +218,4 @@ h1. So Far, So Good
 * Learned how to author test in Groovy
 * Learned how to run the tests
 
-This is where the fun really begins...
+bq{margin-top: 48px;}. This is where the fun really begins...
