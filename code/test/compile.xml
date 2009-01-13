@@ -42,3 +42,10 @@
     </junit>
 </target>
 <!-- END:batchtest -->
+<!-- START:jmockit -->
+<junit showoutput="true" fork="true" dir="${basedir}"  forkmode="once"
+	   failureproperty="tests.failed" errorproperty="tests.failed">
+	<jvmarg value="-javaagent:../lib/jmockit.jar"/>
+	<!-- ... -->
+</junit>
+<!-- END:jmockit -->

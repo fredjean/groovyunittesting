@@ -34,3 +34,62 @@ Then we use the map in the code under test:
 :code code/test/MapCoercionTest.groovy[test class=code-medium]
 
 bq. Map coercion allows you to provide partial interface implementation.
+
+h1. Hard to Isolate Cases
+
+These cases are hard to test:
+
+* Dependency created as part of the code under test
+* Making calls to static methods
+* Making calls to final methods
+
+None of these are easy to address in normal unit testing scenarios
+
+h1. JMockit
+
+* Runs as a JVM agent
+* Replaces any method or constructor at run time.
+* Redefines classes as they are loaded
+* Requires Java 5
+
+h1. Getting JMockit to Work
+
+# Configure JVM to launch JMockit as an agent
+# Write the mock methods(s)
+# Tell JMockit what class to augment
+# Exercise code under test
+
+h1. Configuring JVM
+
+Pass @-javaagent:/path/to/jmockit.jar@ as an argument to the JVM.
+
+:code code/test/compile.xml[jmockit class=code-medium]
+
+You may also need to add @jmockit-asm2.jar@ to the classpath.
+
+h1. Write Mock Method
+
+:code code/test/MockPath.java[class=code-medium]
+
+h1. Redefine Methods
+
+:code code/test/JMockitRedef.groovy[intest class=code-medium]
+
+A good place to redefine the methods is in the @@Before@ method:
+
+:code code/test/JMockitRedef.groovy[before class=code-medium]
+
+h1. Test Code
+
+:code code/test/JMockitRedef.groovy[test class=code-medium]
+
+Variable @instance@ was created in the @@Before@ method.
+
+h1. Mock Method Rules
+
+* Must match the signature of the methods to replace
+* Must *not* introduce new methods
+* Can introduce static variables
+
+
+
