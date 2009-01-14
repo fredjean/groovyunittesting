@@ -18,6 +18,7 @@ class EarthTest {
     @Test void changeSkyColor() {
         def planet = new Planet()
         assert planet.theSkyIs() == "red"
+        assert MockPlanet.calledTheSkyIs
     }
 
     @Test void changeSolarSystem() {

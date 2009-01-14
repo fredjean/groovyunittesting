@@ -10,7 +10,11 @@ package jmockitexample;
  * @author fjean
  */
 public class MockPlanet {
+
+    public static boolean calledTheSkyIs = false;
+
     public String theSkyIs() {
+        calledTheSkyIs = true;
         return "red";
     }
 

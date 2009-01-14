@@ -2,7 +2,6 @@ h1. Testing Is Hard
 
 Testing forces you to think about many things
 
-* Architecture
 * Application Design
 * Expected Behavior
 * Dependencies
@@ -11,7 +10,7 @@ Testing forces you to think about many things
 
 h1. Java Adds to the Complexity
 
-* Keeping the compiler happy
+* Java's ceremony
 * Static typing makes it difficult to mock dependencies
 * Static and final methods further complicates mocking
 
