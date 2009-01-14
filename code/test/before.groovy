@@ -15,7 +15,7 @@ import org.junit.After
 // START:beforeclass
 import org.junit.BeforeClass
 
-@BeforeClass void startSelenium() {
+@BeforeClass void static startSelenium() {
   selenium = new DefaultSelenium()
   selenium.start()
 }
@@ -23,7 +23,7 @@ import org.junit.BeforeClass
 // START:afterclass
 import org.junit.AfterClass
 
-@AfterClass void stopSelenium() {
+@AfterClass void static stopSelenium() {
   selenium.stop()
 }
 // END:afterclass

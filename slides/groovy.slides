@@ -99,17 +99,6 @@ h1. Groovy Script Test
 
 bq. Groovy scripts are compiled to classes named after the file where they are defined.
 
-h1. Test Annotations
-
-|_{width:25%}. Annotation |_. Description |
-|{width:25%}. @@BeforeClass@ | Marks a per-class setup method. |
-|{width:25%}. @@Before@ | Marks a per-test setup method. |
-|{width:25%}. @@Test@ | Marks a method as a test method. |
-|{width:25%}. @@After@ | Marks a per-test teardown method. |
-|{width:25%}. @@AfterClass@ | Marks a per-class teardown method. |
-|{width:25%}. @@Ignore@ | Tells JUnit to ignore a method. |
-
-
 h1. Setup and Teardown
 
 <div style="float: left; width:50%">
@@ -176,6 +165,51 @@ h1. Ignoring a Test
 
 * No need to comment out failing tests
 * Ignored tests are included in the report
+
+h1. Failing a Test
+
+:code code/test/FailTest2.groovy[class=code-medium]
+
+* Use the fail method on Assert
+
+h1. Assertions
+
+Assertions are imported into the class as a static import of @org.junit.Assert@.
+
+<div style="width: 50%; float:left">
+
+* @assertEquals@
+* @assertTrue@
+* @assertFalse@
+* @assertThat@
+
+</div>
+
+<div style="width:50%; float:right;">
+
+* @assertNotNull@
+* @assertNull@
+* @assertSame@
+* @assertNotSame@
+
+</div>
+
+h1. Hamcrest Matchers
+
+Hamcrest Matchers are used with @assertThat@
+
+:code code/test/hamcrest.groovy[class=code-medium]
+
+You can combine many matchers to build complex expressions
+
+
+h1. Assumptions
+
+Skips the rest of the test unless the assumption is matched.
+
+:code code/test/assume.groovy[class=code-medium]
+
+The test is marked as passing if the assumption fails.
 
 h1. Defining a Test Suite[1]
 

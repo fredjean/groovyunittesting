@@ -6,10 +6,7 @@ Groovy's dynamic nature provides many approaches to isolate the code under test 
 
 h1. The as Operator
 
-Groovy's as operator allows you to use an Expendo, a Closure or a Map to implement an interface.
-
-|{width:25%}. Closure | Used to implement a single method interface |
-|{width:25%}. Map | Used to implement multiple method interfaces |
+Groovy's as operator allows you to use a Closure or a Map to implement an interface or override methods on a concrete class.
 
 The resulting proxy can then be passed to a Java class.
 
@@ -25,15 +22,22 @@ First we build and coerce the map into an Execution interface:
 
 :code code/test/MapCoercionTest.groovy[map class=code-medium]
 
-bq. @Execution@ is a ZK interface that encapsulate the HTTP servlet request.
-
 h1. Map Coercion Example (part 2)
 
 Then we use the map in the code under test:
 
 :code code/test/MapCoercionTest.groovy[test class=code-medium]
 
-bq. Map coercion allows you to provide partial interface implementation.
+h1. Concrete Object Coercion Example
+
+:code code/test/Book.java[class=code-medium]
+
+:code code/test/BookMap.groovy[class=code-medium]
+
+h1. Advantages of Map Coercion
+
+* Allows you to implement part of an interface
+* Allows you to override methods on a concrete class
 
 h1. Hard to Isolate Cases
 
