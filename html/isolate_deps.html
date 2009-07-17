@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Groovy Unit Testing</title>
+<!-- metadata -->
+<meta name="generator" content="S5" />
+<meta name="version" content="S5 1.1" />
+<meta name="presdate" content="&date" />
+<meta name="author" content="Frederic Jean" />
+<meta name="organization" content="&organization;" />
+<meta name="company" content="&company;" />
+<!-- configuration parameters -->
+<meta name="defaultView" content="slideshow" />
+<meta name="controlVis" content="hidden" />
+<!-- style sheet links -->
+<link rel="stylesheet" href="../ui/default/slides.css" type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="../ui/default/outline.css" type="text/css" media="screen" id="outlineStyle" />
+<link rel="stylesheet" href="../lib/stylesheets/print.css" type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="../ui/default/opera.css" type="text/css" media="projection" id="operaFix" />
+
+<link rel="stylesheet" href="../lib/stylesheets/pressie.css" type="text/css" />
+
+<!-- S5 JS -->
+<script src="../ui/default/slides.js" type="text/javascript"></script>
+
+<!-- Syntax Highlighter -->
+<link rel="stylesheet"  href="../dp.SyntaxHighlighter/Styles/SyntaxHighlighter.css"></link>
+
+</head>
+<body>
+
+<div class="layout">
+<div id="controls"><!-- DO NOT EDIT --></div>
+<div id="currentSlide"><!-- DO NOT EDIT --></div>
+<div id="header"></div>
+<div id="footer">
+<h2>Copyright &copy; 2009 Frederic Jean</h2>
+</div>
+
+</div>
+
+
+<div class="presentation">
+<div class="slide">
+
+	<h1>Isolating Dependencies</h1>
+
+
+	<p>Unit test is concerned with testing classes and methods in isolation from their surrounding system.</p>
+
+
+	<p>Groovy&#8217;s dynamic nature provides many approaches to isolate the code under test from it&#8217;s dependencies.</p>
+
+
+</div>
+<div class="slide">
+
+	<h1>The as Operator</h1>
+
+
+	<p>Groovy&#8217;s as operator allows you to use a Closure or a Map to implement an interface or override methods on a concrete class.</p>
+
+
+	<p>The resulting proxy can then be passed to a Java class.</p>
+
+
+</div>
+<div class="slide">
+
+	<h1>Closure Coercion Example</h1>
+
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">@Test void buttonClickCallsListener() {
+  boolean clicked = false
+  def listener = { event -&gt; clicked = true }
+  
+  def button = new Button()
+  button.addEventListener(Events.ON_CLICK, listener as EventListener)
+  button.click()
+  assert clicked : "Listener was not called" 
+}
+</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/ClosureTest.groovy">code/test/ClosureTest.groovy</a></div>
+
+	<p>Implements the <code>EventListener</code> interface using the <code>listener</code> closure.</p>
+
+
+</div>
+<div class="slide">
+
+	<h1>Map Coercion Example</h1>
+
+
+	<p>First we build and coerce the map into an Execution interface:</p>
+
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">def attributes = [:]
+
+def exec = [
+    getNativeRequest: { -&gt; return request },
+    setAttribute: { name, value -&gt; attributes[name] = value },
+    isExplorer: { -&gt; return isExplorer; }
+] as Execution
+
+def dummy = [:] as Execution
+</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/MapCoercionTest.groovy">code/test/MapCoercionTest.groovy</a></div>
+
+</div>
+<div class="slide">
+
+	<h1>Map Coercion Example (part 2)</h1>
+
+
+	<p>Then we use the map in the code under test:</p>
+
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">def detector = new BrowserDetector()
+
+//...
+
+@Test void initMethodWithX11() {
+    request.addHeader(BrowserDetector.USERAGENT, "Fake X11 Firefox 2.0.0.4")
+    detector.init(exec, dummy)
+    assert attributes[BrowserDetector.DEGRADEEXPERIENCE]
+    assert !attributes["explorer"]
+}
+</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/MapCoercionTest.groovy">code/test/MapCoercionTest.groovy</a></div>
+
+</div>
+<div class="slide">
+
+	<h1>Concrete Object Coercion Example</h1>
+
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">public class NurseryRhyme {
+   public String sing() {
+      return getLyrics();
+   }
+   protected String getLyrics() {
+      return "Mary had a little lamb.";
+   }
+}</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/Book.java">code/test/Book.java</a></div>
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">@Test void concreteClassCoercion() {
+    def rhyme = [ getLyrics : { -&gt; "London Bridge is coming down."}] as NurseryRhyme
+    assert rhyme.sing() == "London Bridge is coming down." 
+}</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/BookMap.groovy">code/test/BookMap.groovy</a></div>
+
+</div>
+<div class="slide">
+
+	<h1>Advantages of Map Coercion</h1>
+
+
+	<ul>
+	<li>Allows you to implement part of an interface</li>
+		<li>Allows you to override methods on a concrete class</li>
+	</ul>
+
+
+</div>
+<div class="slide">
+
+	<h1>Hard to Isolate Cases</h1>
+
+
+	<p>These cases are hard to test:</p>
+
+
+	<ul>
+	<li>Dependency created as part of the code under test</li>
+		<li>Making calls to static methods</li>
+		<li>Making calls to final methods</li>
+		<li>Using final classes</li>
+	</ul>
+
+
+	<p>None of these are easy to address in normal unit testing scenarios</p>
+
+
+</div>
+<div class="slide">
+
+	<h1>JMockit</h1>
+
+
+	<ul>
+	<li>Runs as a <span class="caps">JVM</span> agent</li>
+		<li>Replaces any method or constructor at run time.</li>
+		<li>Redefines classes as they are loaded</li>
+		<li>Can Redefine final classes</li>
+		<li>Requires Java 5</li>
+	</ul>
+
+
+</div>
+<div class="slide">
+
+	<h1>Getting JMockit to Work</h1>
+
+
+	<ol>
+	<li>Configure <span class="caps">JVM</span> to launch JMockit as an agent</li>
+		<li>Write the mock methods(s)</li>
+		<li>Tell JMockit what class to augment</li>
+		<li>Exercise code under test</li>
+	</ol>
+
+
+</div>
+<div class="slide">
+
+	<h1>Configuring <span class="caps">JVM</span></h1>
+
+
+	<p>Pass <code>-javaagent:/path/to/jmockit.jar</code> as an argument to the <span class="caps">JVM</span>.</p>
+
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">&lt;junit showoutput="true" fork="true" dir="${basedir}"  forkmode="once" 
+       failureproperty="tests.failed" errorproperty="tests.failed"&gt;
+    &lt;jvmarg value="-javaagent:../tools/jmockit.jar"/&gt;
+    &lt;!-- ... --&gt;
+&lt;/junit&gt;
+</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/compile.xml">code/test/compile.xml</a></div>
+
+	<p>You may also need to add <code>jmockit-asm2.jar</code> to the classpath.</p>
+
+
+</div>
+<div class="slide">
+
+	<h1>Write Instance Mock Method</h1>
+
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">package com.sun.scn.ui.common.wizard;
+
+// Skipping imports
+
+public class MockDesktopUtil {
+    public static String passedUrl;
+    
+    public Component loadResourceIntoParent(String uri, Component parent) {
+        passedUrl = uri;
+        if(parent == null) {
+            throw new NullPointerException("Parent is null!");
+        }
+        return new Label("Blah!");
+    }
+}
+</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/MockDesktopUtil.java">code/test/MockDesktopUtil.java</a></div>
+
+</div>
+<div class="slide">
+
+	<h1>Write Static Mock Method</h1>
+
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">package com.sun.scn.ui.common.wizard;
+
+import org.zkoss.zk.ui.Component;
+import org.zkoss.zul.Window;
+
+public class MockPath {
+    public static String passedPath;
+
+    public static Component getComponent(String path) {
+        passedPath = path;
+        return new Window();
+    }
+}</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/MockPath.java">code/test/MockPath.java</a></div>
+
+</div>
+<div class="slide">
+
+	<h1>Redefine Methods</h1>
+
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">import mockit.Mockit
+import org.zkoss.zk.ui.Path
+//...
+@Test void redefineInTest() {
+    Mockit.redefineMethods(Path, MockPath)
+    //...
+}
+</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/JMockitRedef.groovy">code/test/JMockitRedef.groovy</a></div>
+
+	<p>A good place to redefine the methods is in the <code>@Before</code> method:</p>
+
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">@Before void setup() {
+    Mockit.redefineMethods(DesktopUtil, MockDesktopUtil)
+}
+</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/JMockitRedef.groovy">code/test/JMockitRedef.groovy</a></div>
+
+</div>
+<div class="slide">
+
+	<h1>Test Code</h1>
+
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">@Test void goodPath() {
+    Mockit.redefineMethods(Path, MockPath)
+    instance.execute(new ActionCommandItemState(actionCommandItem, false, false), null)
+    assert MockPath.passedPath == "//inventory/inventory_window" 
+    assert MockDesktopUtil.passedUrl == url
+}
+</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/JMockitRedef.groovy">code/test/JMockitRedef.groovy</a></div>
+
+	<p>Variable <code>instance</code> was created in the <code>@Before</code> method.</p>
+
+
+</div>
+<div class="slide">
+
+	<h1>Mock Method Rules</h1>
+
+
+	<ul>
+	<li>Must match the signature of the methods to replace</li>
+		<li>Must <strong>not</strong> introduce new methods</li>
+		<li>Can introduce static variables</div></li>
+	</ul>
+
+  <!-- Syntax Highlighter -->
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shCore.js"></script>
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shBrushCpp.js"></script>
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shBrushRuby.js"></script>
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shBrushXml.js"></script>
+  <script language="javascript">
+  dp.SyntaxHighlighter.ClipboardSwf = '/flash/clipboard.swf';
+  dp.SyntaxHighlighter.HighlightAll('code');
+  </script>
+</div>
+</body>
+</html>

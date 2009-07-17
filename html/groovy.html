@@ -1,0 +1,680 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Groovy Unit Testing</title>
+<!-- metadata -->
+<meta name="generator" content="S5" />
+<meta name="version" content="S5 1.1" />
+<meta name="presdate" content="&date" />
+<meta name="author" content="Frederic Jean" />
+<meta name="organization" content="&organization;" />
+<meta name="company" content="&company;" />
+<!-- configuration parameters -->
+<meta name="defaultView" content="slideshow" />
+<meta name="controlVis" content="hidden" />
+<!-- style sheet links -->
+<link rel="stylesheet" href="../ui/default/slides.css" type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="../ui/default/outline.css" type="text/css" media="screen" id="outlineStyle" />
+<link rel="stylesheet" href="../lib/stylesheets/print.css" type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="../ui/default/opera.css" type="text/css" media="projection" id="operaFix" />
+
+<link rel="stylesheet" href="../lib/stylesheets/pressie.css" type="text/css" />
+
+<!-- S5 JS -->
+<script src="../ui/default/slides.js" type="text/javascript"></script>
+
+<!-- Syntax Highlighter -->
+<link rel="stylesheet"  href="../dp.SyntaxHighlighter/Styles/SyntaxHighlighter.css"></link>
+
+</head>
+<body>
+
+<div class="layout">
+<div id="controls"><!-- DO NOT EDIT --></div>
+<div id="currentSlide"><!-- DO NOT EDIT --></div>
+<div id="header"></div>
+<div id="footer">
+<h2>Copyright &copy; 2009 Frederic Jean</h2>
+</div>
+
+</div>
+
+
+<div class="presentation">
+<div class="slide">
+
+	<h1>JUnit With Groovy</h1>
+
+
+	<h2>Why use Groovy?</h2>
+
+
+	<ul>
+	<li>Dynamic language</li>
+		<li>Supports annotations</li>
+		<li>Support static imports</li>
+		<li>Compiles to Java bytecode</li>
+	</ul>
+
+
+	<blockquote>
+		<p style="margin-top: 48px;;">Groovy is a great language to write JUnit 4 test cases.</p>
+	</blockquote>
+
+
+</div>
+<div class="slide">
+
+	<h1>Groovy and Java Test Cases</h1>
+
+
+<div style='width: 50%; float: left'>
+h2. Java
+
+<div class="code-normal">
+
+<pre name="code" class="ruby:nogutter:nocontrols">import org.junit.Test; 
+import static org.junit.Assert.assertEquals; 
+
+public class BasicTest { 
+   @Test public void helloWorld() { 
+      assertEquals("The answer should be 42", 42, 40 + 2); 
+   } 
+}</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/BasicTest.java">code/test/BasicTest.java</a></div>
+
+</div>
+<div style='width:50%; float:right'> 
+h2. Groovy
+
+<div class="code-normal">
+
+<pre name="code" class="ruby:nogutter:nocontrols">import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+public class BasicTest { 
+   @Test public void helloWorld() { 
+      assertEquals("The answer should be 42", 42, 40 + 2);
+   } 
+}
+</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/BasicTest.groovy">code/test/BasicTest.groovy</a></div>
+
+</div>
+
+<div style="width:100%; clear:both">
+
+	<blockquote>
+		<p>Groovy allows you to gradually adopt it&#8217;s idioms.</p>
+	</blockquote>
+
+
+</div>
+
+</div>
+<div class="slide">
+
+	<h1>Groovy and Java Test Cases</h1>
+
+
+<div style='width: 50%; float: left'>
+h2. Java
+
+<div class="code-normal">
+
+<pre name="code" class="ruby:nogutter:nocontrols">import org.junit.Test; 
+import static org.junit.Assert.assertEquals; 
+
+public class BasicTest { 
+   @Test public void helloWorld() { 
+      assertEquals("The answer should be 42", 42, 40 + 2); 
+   } 
+}</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/BasicTest.java">code/test/BasicTest.java</a></div>
+
+</div>
+<div style='width:50%; float:right'> 
+h2. Groovy
+
+<div class="code-normal">
+
+<pre name="code" class="ruby:nogutter:nocontrols">import org.junit.Test
+import static org.junit.Assert.assertEquals
+
+class BasicTest { 
+   @Test void helloWorld() { 
+      assertEquals("The answer should be 42", 42, 40 + 2)
+   } 
+}
+</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/BasicTest.groovy">code/test/BasicTest.groovy</a></div>
+
+</div>
+
+<div style="width:100%; clear:both">
+
+	<blockquote>
+		<p>Groovy allows you to gradually adopt it&#8217;s idioms.</p>
+	</blockquote>
+
+
+</div>
+
+</div>
+<div class="slide">
+
+	<h1>Groovy and Java Test Cases</h1>
+
+
+<div style='width: 50%; float: left'>
+h2. Java
+
+<div class="code-normal">
+
+<pre name="code" class="ruby:nogutter:nocontrols">import org.junit.Test; 
+import static org.junit.Assert.assertEquals; 
+
+public class BasicTest { 
+   @Test public void helloWorld() { 
+      assertEquals("The answer should be 42", 42, 40 + 2); 
+   } 
+}</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/BasicTest.java">code/test/BasicTest.java</a></div>
+
+</div>
+<div style='width:50%; float:right'> 
+h2. Groovy
+
+<div class="code-normal">
+
+<pre name="code" class="ruby:nogutter:nocontrols">import org.junit.Test
+
+class BasicTest { 
+   @Test void helloWorld() { 
+      assert 42 == 40 + 2 : "The answer should be 42" 
+   } 
+}
+</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/BasicTest.groovy">code/test/BasicTest.groovy</a></div>
+
+</div>
+
+<div style="width:100%; clear:both">
+
+	<blockquote>
+		<p>Groovy allows you to gradually adopt it&#8217;s idioms.</p>
+	</blockquote>
+
+
+</div>
+
+</div>
+<div class="slide">
+
+	<h1>Groovy and Java Test Cases</h1>
+
+
+<div style='width: 50%; float: left'>
+h2. Java
+
+<div class="code-normal">
+
+<pre name="code" class="ruby:nogutter:nocontrols">import org.junit.Test; 
+import static org.junit.Assert.assertEquals; 
+
+public class BasicTest { 
+   @Test public void helloWorld() { 
+      assertEquals("The answer should be 42", 42, 40 + 2); 
+   } 
+}</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/BasicTest.java">code/test/BasicTest.java</a></div>
+
+</div>
+<div style='width:50%; float:right'> 
+h2. Groovy
+
+<div class="code-normal">
+
+<pre name="code" class="ruby:nogutter:nocontrols">import org.junit.Test
+
+@Test void helloWorld() { 
+    assert 42 == 40 + 2 : "The answer should be 42" 
+}
+</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/BasicTest.groovy">code/test/BasicTest.groovy</a></div>
+
+</div>
+
+<div style="width:100%; clear:both">
+
+	<blockquote>
+		<p>Groovy allows you to gradually adopt it&#8217;s idioms.</p>
+	</blockquote>
+
+
+</div>
+
+</div>
+<div class="slide">
+
+	<h1>Groovy Script Test</h1>
+
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">import org.junit.Test
+
+@Test void helloWorld() { 
+      assert 42 == 40 + 2 : "The answer should be 42" 
+}</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/BasicScriptTest.groovy">code/test/BasicScriptTest.groovy</a></div>
+
+	<blockquote>
+		<p>Groovy scripts are compiled to classes named after the file where they are defined.</p>
+	</blockquote>
+
+
+</div>
+<div class="slide">
+
+	<h1>Setup and Teardown</h1>
+
+
+<div style="float: left; width:50%">
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">import org.junit.Before
+
+@Before void setupTest() {
+    label = new TestMastheadLabel()
+}
+</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/before.groovy">code/test/before.groovy</a></div>
+
+</div>
+
+<div style="float: right; width: 50%;">
+* <code>@Before</code> is run before each test method
+* Replaces the <code>setUp()</code> method from JUnit 3
+* Must be public
+</div>
+
+<div style="clear: both; float:left; width:50%">
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">import org.junit.After
+
+@After void afterTest() {
+  label = null
+}
+</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/before.groovy">code/test/before.groovy</a></div>
+
+</div>
+
+<div style="float:right; width: 50%">
+* <code>@After</code> is run after each test method
+* Used to perform clean up tasks
+* Must be public
+</div>
+
+</div>
+<div class="slide">
+
+	<h1>Class Setup and Teardown</h1>
+
+
+<div style="float: left; width:50%">
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">import org.junit.BeforeClass
+
+@BeforeClass void static startSelenium() {
+  selenium = new DefaultSelenium()
+  selenium.start()
+}
+</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/before.groovy">code/test/before.groovy</a></div>
+
+</div>
+
+<div style="float: right; width: 50%;">
+* <code>@BeforeClass</code> is run before each test method
+* Used to perform expensive setup operations.
+* Must be static and public
+</div>
+
+<div style="clear: both; float:left; width:50%">
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">import org.junit.AfterClass
+
+@AfterClass void static stopSelenium() {
+  selenium.stop()
+}
+</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/before.groovy">code/test/before.groovy</a></div>
+
+</div>
+
+<div style="float:right; width: 50%">
+* <code>@AfterClass</code> is run after all test methods have run
+* Used to perform clean up tasks
+* Must be static and public
+</div>
+
+</div>
+<div class="slide">
+
+	<h1>Test For Exceptions</h1>
+
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">import org.junit.Test
+
+@Test void shouldThrowException() {
+  try {
+      throw new IllegalArgumentException("Blah")
+      fail "An Exception should have occured" 
+  } catch (IllegalArgumentException iae) {
+    // NOP
+  } catch (Exception e) {
+    fail "Expecting an IllegalArgumentException" 
+  }
+}
+</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/ExceptionTest.groovy">code/test/ExceptionTest.groovy</a></div>
+
+</div>
+<div class="slide">
+
+	<h1>Test For Exceptions</h1>
+
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">import org.junit.Test
+
+@Test(expected=IllegalArgumentException.class)
+void shouldThrowException() {
+  throw new IllegalArgumentException("Blah")
+}
+</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/ExceptionTest.groovy">code/test/ExceptionTest.groovy</a></div>
+
+	<blockquote>
+		<p>The test will pass only if the expected exception is thrown.</p>
+	</blockquote>
+
+
+</div>
+<div class="slide">
+
+	<h1>Test Timeouts</h1>
+
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">import org.junit.Test
+
+@Test(timeout=10000) void shouldTimeout() {
+  while (true) { }
+}</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/TimeoutTest.groovy">code/test/TimeoutTest.groovy</a></div>
+
+	<blockquote>
+		<p>The test will fail and stop after waiting for 10 seconds.</p>
+	</blockquote>
+
+
+</div>
+<div class="slide">
+
+	<h1>Ignoring a Test</h1>
+
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">import org.junit.Ignore
+import static org.junit.Assert.fail
+
+@Ignore("Not running because this will fail")
+@Test void guaranteedFailure() {
+  fail "I told you so!" 
+}</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/FailTest.groovy">code/test/FailTest.groovy</a></div>
+
+	<ul>
+	<li>No need to comment out failing tests</li>
+		<li>Ignored tests are included in the report</li>
+	</ul>
+
+
+</div>
+<div class="slide">
+
+	<h1>Failing a Test</h1>
+
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">import org.junit.Test
+import static org.junit.Assert.fail
+
+@Test void failedTest() {
+    fail "This will never pass." 
+}</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/FailTest2.groovy">code/test/FailTest2.groovy</a></div>
+
+	<ul>
+	<li>Use the fail method on Assert</li>
+	</ul>
+
+
+</div>
+<div class="slide">
+
+	<h1>Assertions</h1>
+
+
+	<p>Assertions are imported into the class as a static import of <code>org.junit.Assert</code>.</p>
+
+
+<div style="width: 50%; float:left">
+
+	<ul>
+	<li><code>assertEquals</code></li>
+		<li><code>assertTrue</code></li>
+		<li><code>assertFalse</code></li>
+		<li><code>assertThat</code></li>
+	</ul>
+
+
+</div>
+
+<div style="width:50%; float:right;">
+
+	<ul>
+	<li><code>assertNotNull</code></li>
+		<li><code>assertNull</code></li>
+		<li><code>assertSame</code></li>
+		<li><code>assertNotSame</code></li>
+	</ul>
+
+
+</div>
+
+</div>
+<div class="slide">
+
+	<h1>Hamcrest Matchers</h1>
+
+
+	<p>Hamcrest Matchers are used with <code>assertThat</code></p>
+
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">import org.junit.Test
+import static org.junit.Assert.assertThat
+import static org.hamcrest.CoreMatchers.*
+
+@Test void matchers() {
+  assertThat "Zero is one", 0, is(not(1))
+}</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/hamcrest.groovy">code/test/hamcrest.groovy</a></div>
+
+	<p>You can combine many matchers to build complex expressions</p>
+
+
+</div>
+<div class="slide">
+
+	<h1>Assumptions</h1>
+
+
+	<p>Skips the rest of the test unless the assumption is matched.</p>
+
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">import org.junit.Test
+import static org.junit.Assume.assumeThat
+import static org.junit.Assert.fail
+import static org.hamcrest.CoreMatchers.*
+
+@Test void testMyAssumptions() {
+    assumeThat File.separatorChar, is('/')
+    fail "This would normally fail on Windows" 
+}</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/assume.groovy">code/test/assume.groovy</a></div>
+
+	<p>The test is marked as passing if the assumption fails.</p>
+
+
+</div>
+<div class="slide">
+
+	<h1>Defining a Test Suite<sup><a href="#fn1">1</a></sup></h1>
+
+
+<div style="width: 50%; float: left">
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">import org.junit.runner.RunWith
+import org.junit.runners.Suite
+ 
+@RunWith(Suite.class)
+@Suite.SuiteClasses([
+  HelloWorldTest.class,
+  BasicScriptTest.class,
+  TimeoutTest.class,
+  ExceptionTest.class
+])
+class TestSuite { }</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/TestSuite.groovy">code/test/TestSuite.groovy</a></div>
+
+</div>
+
+<div style="width: 50%; float:right">
+* Uses the Suite runner
+* Points to the compiled classes
+* Allows us to mix both Java and Groovy test cases
+</div>
+
+<div style="clear: both; font-size: 12px;">
+fn1. Adapted from  http://radio.javaranch.com/lasse/2006/07/27/1154024535662.html
+</div>
+
+</div>
+<div class="slide">
+
+	<h1>Compile the Groovy Tests</h1>
+
+
+	<ul>
+	<li>Tell <code>ant</code> where to find the <code>groovyc</code> task</li>
+		<li>Define the <code>groovyc</code> task</li>
+	</ul>
+
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">&lt;target name="init"&gt;
+    &lt;property name="groovy.classpath" value="../tools/groovy-all-1.5.6.jar"/&gt;
+    &lt;taskdef name="groovyc" classname="org.codehaus.groovy.ant.Groovyc" 
+        classpath="${groovy.classpath}"/&gt;
+&lt;/target&gt;
+</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/compile.xml">code/test/compile.xml</a></div>
+
+	<ul>
+	<li>Use <code>groovyc</code> to compile the Groovy tests</li>
+	</ul>
+
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">&lt;target name="compile-test" depends="init, compile"&gt;
+    &lt;groovyc srcdir="${test.src.dir}" destdir="${build.test.classes.dir}" 
+             classpath="${run.test.classpath}"/&gt;
+&lt;/target&gt;
+</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/compile.xml">code/test/compile.xml</a></div>
+
+</div>
+<div class="slide">
+
+	<h1>Running the Test Suite</h1>
+
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">&lt;target name="test" depends="compile-test"&gt;
+    &lt;junit showoutput="true" fork="true" dir="${basedir}"  forkmode="once" 
+           failureproperty="tests.failed" errorproperty="tests.failed"&gt;
+        &lt;test name="TestSuite.class"/&gt;
+        &lt;classpath&gt;
+            &lt;path path="${build.test.classes.dir}"/&gt;
+            &lt;path path="${run.test.classpath}"/&gt;
+            &lt;path path="${groovy.classpath}"/&gt;
+        &lt;/classpath&gt;
+        &lt;formatter type="xml"/&gt;
+    &lt;/junit&gt;
+&lt;/target&gt;
+</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/compile.xml">code/test/compile.xml</a></div>
+
+</div>
+<div class="slide">
+
+	<h1>Running Tests By Name</h1>
+
+
+<div class="code-medium">
+
+<pre name="code" class="ruby:nogutter:nocontrols">&lt;target name="test" depends="compile-test"&gt;
+    &lt;junit showoutput="true" fork="true" dir="${basedir}"  forkmode="once" 
+           failureproperty="tests.failed" errorproperty="tests.failed"&gt;
+        &lt;batchtest todir="${build.test.results.dir}"&gt;
+            &lt;fileset dir="${build.test.classes.dir}" includes="**/*Test.class"/&gt;
+        &lt;/batchtest&gt;
+        &lt;classpath&gt;
+            &lt;path path="${build.test.classes.dir}"/&gt;
+            &lt;path path="${run.test.classpath}"/&gt;
+            &lt;path path="${groovy.classpath}"/&gt;
+        &lt;/classpath&gt;
+        &lt;formatter type="xml"/&gt;
+    &lt;/junit&gt;
+&lt;/target&gt;
+</pre></div><div class="codeurl"><a href="txmt://open?url=file:///Users/fjean/Documents/Presentations/GroovyUnitTesting/code/test/compile.xml">code/test/compile.xml</a></div>
+
+</div>
+<div class="slide">
+
+	<h1>So Far, So Good</h1>
+
+
+	<ul>
+	<li>Learned the basics of JUnit</li>
+		<li>Learned how to author test in Groovy</li>
+		<li>Learned how to run the tests</li>
+	</ul>
+
+
+	<blockquote>
+		<p style="margin-top: 48px;;">This is where the fun really begins&#8230;</div></p>
+	</blockquote>
+
+  <!-- Syntax Highlighter -->
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shCore.js"></script>
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shBrushCpp.js"></script>
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shBrushRuby.js"></script>
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shBrushXml.js"></script>
+  <script language="javascript">
+  dp.SyntaxHighlighter.ClipboardSwf = '/flash/clipboard.swf';
+  dp.SyntaxHighlighter.HighlightAll('code');
+  </script>
+</div>
+</body>
+</html>
